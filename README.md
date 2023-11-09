@@ -5,10 +5,10 @@
 This is a hacked together online version of the cornucopia security game.
 The game consists of playing cards that each have a rather unspecific situation of a possible security breach. The target in the game is now to place the playing cards somewhere on your software (code / tech stack / infrastruktur) and come up with a real threat to your software.
 
-In this online version you can upload an image of your architecture and play with as many players as you want. The team decides whos turn it is. The player selects a card out of his card set and places a red square on the architecture image. In a comment he can now describe the thread he sees in the software. Other players can like this potential thread, if the feel there's a real thread in your software. Each player gets points for describing a thread and additional points for each like. The findings can then be downloaded in the end as JSON and the architecture image saved via right-click (save image) with the locations of the findings.
-Afterward the findings with the most likes should be checked if they exist in your software.
+In this online version you can upload an image of your architecture and play with as many players as you want. The team decides whos turn it is. The player selects a card out of his card set on the left side of the screen and places a red square on the architecture image via mouse left click and drag. In a comment on the bottom he can now describe the thread he sees in the software. Other players can like this potential thread, if they feel there's a real thread in your software. Each player gets points for describing a thread and additional points for each like. The findings can then be downloaded in the end as JSON and the architecture image saved via right-click (save image) with the locations of each finding marked with an id.
+Afterward the findings with the most likes should be checked if they really exist in your software.
 
-Each room is secured by a password. You can end you team the link to your room.
+Each room is secured by a password. You can send you team the link to your room.
 
 This project was build around websockets and node. 
 
