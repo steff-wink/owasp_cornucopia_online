@@ -16,9 +16,9 @@ This project was hacked together with some older code snippets and is propably n
 It was a quick experiment, the code is ugly, the UI is not pretty, feel free to optimize it.
 
 To run it:
-git clone
-docker build --tag cornucopia .
-docker run -d -p 80:3000 cornucopia
+    git clone
+    docker build --tag cornucopia .
+    docker run -d -p 80:3000 cornucopia
 
 now go to http://localhost
 
