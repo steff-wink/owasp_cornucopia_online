@@ -1,0 +1,34 @@
+{
+    room: "test",
+    cardset: "cornucopia",
+    undealt:[]
+    imageHashMD5: "lskdfks4323urfwfjhwrwfefh94e"
+    cardsPerPlayer: 5,
+    gamePhase: "<game,review>",
+    activeCards: 56 (or null),
+    activFinding: "ksjhdfksf-345346eg-rwt34tg" (or null),
+    players: [
+        {
+            uuid: "jfhwkf7-wefwf4-wefwe4-fwf",
+            name: "Player1",
+            cards: [5,9,12,56,63],
+        },
+    ]
+    cards: [
+        {
+            id: 56
+            findings: [
+                {
+                    uuid: "ksjhdfksf-345346eg-rwt34tg",
+                    card: 56,
+                    cardScore: 8
+                    positionX: 124,
+                    positionY: 329,
+                    size: 40,
+                    comment: "SQL Injection beim Login, JIRA Ticket 345",
+                    votes: [uuidPlayer1, uuidPlayer2]
+                }
+            ]
+        }
+    ]
+}
