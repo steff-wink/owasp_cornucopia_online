@@ -13,6 +13,7 @@ class CreateJoinProject extends Component {
             errorMsg: "",
             userId: "",
             userName: "",
+            cardset: "ecommerce"
         };
         this.updateProjectName = this.updateProjectName.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
@@ -21,12 +22,16 @@ class CreateJoinProject extends Component {
         this.handleServerReturn = this.handleServerReturn.bind(this);
         this.handlePictureUpload = this.handlePictureUpload.bind(this);
         this.toogleButton = this.toogleButton.bind(this);
+        this.handleCardSet = this.handleCardSet.bind(this);
 
     }
     updateProjectName(e){
         this.setState({projectName: e.target.value}, function() {
             this.toogleButton();
           });
+    }
+    handleCardSet(e){
+        this.setState({cardset: e.target.value})
     }
     componentDidMount(){
         let projectName = "";
@@ -47,6 +52,7 @@ class CreateJoinProject extends Component {
             this.toogleButton();
           });
     }
+
     updateUsername(e){
         this.setState({userName: e.target.value}, function() {
             this.toogleButton();
@@ -90,7 +96,8 @@ class CreateJoinProject extends Component {
                 picture: this.state.picture, 
                 userId: this.state.userId,
                 userName: this.state.userName,
-                password: this.state.password
+                password: this.state.password,
+                cardset: this.state.cardset
             })
         } else if (this.props.type === "join"){
             payload = JSON.stringify({
@@ -167,6 +174,11 @@ class CreateJoinProject extends Component {
                     <input type="password" value={this.state.password} onChange={this.updatePassword}/><br/>
                     Image of architecture:<br/>
                     <input type="file" className="form-control" name="upload_file" onChange={this.handlePictureUpload} /><br/>
+                    Card set:<br/>
+                    <select onChange={this.handleCardSet} value={this.state.cardset}>
+                        <option value="ecommerce">E-Commerce</option>
+                        <option value="eop">Elevation of Privilege</option>
+                    </select><br/>
                     Your name: <br/>
                     <input value={this.state.userName} onChange={this.updateUsername}/><br/>
                     <button onClick={this.createProject} disabled={this.state.disableButton}>Create</button>

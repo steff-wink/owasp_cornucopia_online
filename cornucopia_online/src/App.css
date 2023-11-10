@@ -252,6 +252,27 @@
 .CR {
   background: rgb(151, 119, 224);
 }
+.SP{ 
+  background: rgb(46, 49, 224);
+}
+.TA{
+  background: rgb(118, 181, 233);
+}
+
+.RE{
+  background: rgb(142, 145, 148);
+}
+
+.ID{
+  background: rgb(112, 207, 112);
+}
+.DS {
+  background: rgb(236, 222, 88);
+}
+
+.EP {
+  background: rgb(151, 119, 224);
+}
 
 .coCanvas{
   border: 2px solid black;
@@ -278,7 +299,7 @@ html { overflow-y: hidden; overflow-x:hidden; }
 .centerCreateJoin{
   position: absolute;
   width: 600px;
-  height: 300px;
+  height: 400px;
   z-index: 15;
   top: 50%;
   left: 50%;
@@ -288,7 +309,7 @@ html { overflow-y: hidden; overflow-x:hidden; }
 .CreateJoinInput{
   float: left;
   width: 270px;
-  height: 270px;
+  height: 370px;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;

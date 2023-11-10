@@ -27,7 +27,7 @@ class SmallCard extends Component {
     showTurnButton(){
         if (typeof this.props.savedData !== "undefined" && typeof this.props.startTurn !== "undefined"){
             if (this.props.savedData.activeCard === ""){
-                return <button onClick={()=> this.props.startTurn(this.props.cardId)}>Zug beginnen</button>
+                return <button onClick={()=> this.props.startTurn(this.props.cardId)}>Start turn</button>
             }
         }
 

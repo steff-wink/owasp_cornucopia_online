@@ -131,7 +131,7 @@ class GameField extends Component {
                     <table><tbody>
                         <tr>
                             <td style={{width:"20%"}}>
-                                Kommentar:<br/>
+                                Comment:<br/>
                                 
                                 <button onClick={this.endTurn}>End Turn</button>
                             </td>
@@ -150,7 +150,7 @@ class GameField extends Component {
                             <tr>
 
                                 <td style={{width:"20%"}}>
-                                    Kommentar:<br/>
+                                    Comment:<br/>
                                     {this.showVoteButton()}
                                 </td>
                                 <td style={{width:"80%"}}>

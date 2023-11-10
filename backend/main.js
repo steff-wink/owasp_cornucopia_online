@@ -108,10 +108,11 @@ const addUser = (userId, userName, projectData) => {
     projectData.savedData.players.push(newPlayer);
 }
 
-const newProjectBase = () => {
+const newProjectBase = (cardset) => {
+
     let newProject = {
         room: "test",
-        cardset: "cornucopia",
+        cardset: "ecommerce",
         undealt:["DV2","DV3","DV4","DV5","DV6","DV7","DV8","DV9","DVX","DVJ","DVQ","DVK","DVA","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9","ACX","ACJ","ACQ","ACK","ACA","SM2","SM3","SM4","SM5","SM6","SM7","SM8","SM9","SMX","SMJ","SMQ","SMK","SMA","AZ2","AZ3","AZ4","AZ5","AZ6","AZ7","AZ8","AZ9","AZX","AZJ","AZQ","AZK","AZA","CR2","CR3","CR4","CR5","CR6","CR7","CR8","CR9","CRX","CRJ","CRQ","CRK","CRA","CO2","CO3","CO4","CO5","CO6","CO7","CO8","CO9","COX","COJ","COQ","COK","COA","JOA","JOB"],
         imageHashMD5: "lskdfks4323urfwfjhwrwfefh94e",
         cardsPerPlayer: 5,
@@ -121,6 +122,10 @@ const newProjectBase = () => {
         players: [],
         findings: []
     };
+    if (cardset == "eop"){
+        newProject.undealt = ["SP2","SP3","SP4","SP5","SP6","SP7","SP8","SP9","SPX","SPJ","SPQ","SPK","SPA","TA3","TA4","TA5","TA6","TA7","TA8","TA9","TAX","TAJ","TAQ","TAK","TAA","RE2","RE3","RE4","RE5","RE6","RE7","RE8","RE9","REX","REJ","REQ","REK","REA","ID2","ID3","ID4","ID5","ID6","ID7","ID8","ID9","IDX","IDJ","IDQ","IDK","IDA","DS2","DS3","DS4","DS5","DS6","DS7","DS8","DS9","DSX","DSJ","DSQ","DSK","DSA","EP5","EP6","EP7","EP8","EP9","EPX","EPJ","EPQ","EPK","EPA"];
+        newProject.cardset = cardset;
+    }
     return newProject;
 }
 
@@ -150,7 +155,7 @@ const createProject = async (ws, data) => {
     }
     ws.userId = data.userId;
     let projectData = {};
-    projectData.savedData = newProjectBase();
+    projectData.savedData = newProjectBase(data.cardset);
     projectData.savedData.room  = data.project
     addUser(data.userId, data.userName, projectData)
     projectData.picture = data.picture;
@@ -235,12 +240,15 @@ const delVote = (ws, data) => {
 }
 
 const endTurn = (ws) => {
-    //check if sender ws ID is aktivePlayer
+    //check if sender ws ID is activePlayer
     //find max id
-    const max = projectCache[ws.projectHash].savedData.findings.reduce((prev, current) => (prev.id > current.id) ? prev : current, 0)
-    //current Data added as new Finding
-    let newId = max +1;
-    if (newId == null) {newId = 1;}
+    let newId;
+    if (projectCache[ws.projectHash].savedData.findings.length == 0){
+        newId = 1
+    } else {
+        const max = projectCache[ws.projectHash].savedData.findings.reduce((prev, current) => (prev.id > current.id) ? prev : current, 0);
+        newId = max.id +1;
+    }
     if (ws.userId === projectCache[ws.projectHash].savedData.activePlayer){
         let newFinding = {
             uuid: createUuid(),
@@ -249,9 +257,12 @@ const endTurn = (ws) => {
             comment: projectCache[ws.projectHash].currentData.comment,
             votes: projectCache[ws.projectHash].currentData.votes,
             player: projectCache[ws.projectHash].savedData.activePlayer,
-            id: max + 1
+            id: newId
         };
-        projectCache[ws.projectHash].savedData.findings.push(newFinding);
+        if (JSON.stringify(newFinding.square) != JSON.stringify({x: 0, y: 0, width: 0, height: 0}) || newFinding.comment != ""){
+            projectCache[ws.projectHash].savedData.findings.push(newFinding);
+        }
+        
         projectCache[ws.projectHash].savedData.activeCard = "";
         projectCache[ws.projectHash].savedData.activePlayer= "";
         projectCache[ws.projectHash].lastChanged = Date.now();

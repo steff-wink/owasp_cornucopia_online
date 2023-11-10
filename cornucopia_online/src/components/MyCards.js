@@ -28,7 +28,7 @@ class MyCards extends Component {
     collectCardInformation(){
         let displayData = [];
         this.props.cards.forEach((cardId)=>{
-            let card = getCardById(cardId)
+            let card = getCardById(cardId, this.props.savedData.cardset)
 
             displayData.push(card);
         });
@@ -44,7 +44,7 @@ class MyCards extends Component {
     }
     displayBig(){
         if (this.state.showBig){
-            let card = getCardById(this.state.selectedCard);
+            let card = getCardById(this.state.selectedCard, this.props.savedData.cardset);
             return(
                 <BigCard card={card} exitBig={this.exitBig}/>
             );
